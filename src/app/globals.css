@@ -180,6 +180,8 @@
       -6px -6px 12px #ffffff;
     border-radius: 16px;
     transition: all 0.3s ease;
+    color: oklch(0.205 0 0);
+    border: 1px solid oklch(0.922 0 0);
   }
 
   .claymorphism-btn:hover {
@@ -187,6 +189,7 @@
       4px 4px 8px #dcdad9,
       -4px -4px 8px #ffffff;
     transform: translateY(1px);
+    color: oklch(0.145 0 0);
   }
 
   .claymorphism-btn:active {
@@ -201,12 +204,15 @@
     box-shadow:
       6px 6px 12px #0d0d0e,
       -6px -6px 12px #3a3a3e;
+    color: oklch(0.985 0 0);
+    border: 1px solid oklch(1 0 0 / 10%);
   }
 
   .dark .claymorphism-btn:hover {
     box-shadow:
       4px 4px 8px #0d0d0e,
       -4px -4px 8px #3a3a3e;
+    color: oklch(1 0 0);
   }
 
   .dark .claymorphism-btn:active {
