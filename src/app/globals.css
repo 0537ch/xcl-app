@@ -127,9 +127,9 @@
 
 @layer components {
   .claymorphism {
-    background: linear-gradient(145deg, #fdfdfd, #f4f4f2);
+    background: linear-gradient(145deg, #fefefe, #f8f8f7);
     box-shadow:
-      8px 8px 16px #dbdad5,
+      8px 8px 16px #dddcd9,
       -8px -8px 16px #ffffff;
     border-radius: 20px;
   }
@@ -142,9 +142,9 @@
   }
 
   .claymorphism-card {
-    background: linear-gradient(145deg, #fafaf9, #ecebe6);
+    background: linear-gradient(145deg, #fdfdfd, #f4f4f2);
     box-shadow:
-      20px 20px 60px #d5d4d0,
+      20px 20px 60px #dcdad9,
       -20px -20px 60px #ffffff;
     border-radius: 24px;
     border: 1px solid rgba(255, 255, 255, 0.8);
@@ -159,9 +159,9 @@
   }
 
   .claymorphism-inset {
-    background: linear-gradient(145deg, #ecebe6, #fdfdfd);
+    background: linear-gradient(145deg, #f4f4f2, #fefefe);
     box-shadow:
-      inset 8px 8px 16px #dbdad5,
+      inset 8px 8px 16px #dddcd9,
       inset -8px -8px 16px #ffffff;
     border-radius: 16px;
   }
@@ -174,9 +174,9 @@
   }
 
   .claymorphism-btn {
-    background: linear-gradient(145deg, #fafaf9, #e0ded7);
+    background: linear-gradient(145deg, #fdfdfd, #e8e8e5);
     box-shadow:
-      6px 6px 12px #d5d4d0,
+      6px 6px 12px #dcdad9,
       -6px -6px 12px #ffffff;
     border-radius: 16px;
     transition: all 0.3s ease;
@@ -184,14 +184,14 @@
 
   .claymorphism-btn:hover {
     box-shadow:
-      4px 4px 8px #d5d4d0,
+      4px 4px 8px #dcdad9,
       -4px -4px 8px #ffffff;
     transform: translateY(1px);
   }
 
   .claymorphism-btn:active {
     box-shadow:
-      inset 4px 4px 8px #d5d4d0,
+      inset 4px 4px 8px #dcdad9,
       inset -4px -4px 8px #ffffff;
     transform: translateY(0);
   }
