@@ -124,3 +124,94 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer components {
+  .claymorphism {
+    background: linear-gradient(145deg, #fdfdfd, #f4f4f2);
+    box-shadow:
+      8px 8px 16px #dbdad5,
+      -8px -8px 16px #ffffff;
+    border-radius: 20px;
+  }
+
+  .dark .claymorphism {
+    background: linear-gradient(145deg, #2a2a2a, #1f1f1f);
+    box-shadow:
+      8px 8px 16px #0a0a0a,
+      -8px -8px 16px #3a3a3a;
+  }
+
+  .claymorphism-card {
+    background: linear-gradient(145deg, #fafaf9, #ecebe6);
+    box-shadow:
+      20px 20px 60px #d5d4d0,
+      -20px -20px 60px #ffffff;
+    border-radius: 24px;
+    border: 1px solid rgba(255, 255, 255, 0.8);
+  }
+
+  .dark .claymorphism-card {
+    background: linear-gradient(145deg, #2a2a2e, #1a1a1c);
+    box-shadow:
+      20px 20px 60px #0d0d0e,
+      -20px -20px 60px #3a3a3e;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+  }
+
+  .claymorphism-inset {
+    background: linear-gradient(145deg, #ecebe6, #fdfdfd);
+    box-shadow:
+      inset 8px 8px 16px #dbdad5,
+      inset -8px -8px 16px #ffffff;
+    border-radius: 16px;
+  }
+
+  .dark .claymorphism-inset {
+    background: linear-gradient(145deg, #1a1a1c, #2a2a2e);
+    box-shadow:
+      inset 8px 8px 16px #0d0d0e,
+      inset -8px -8px 16px #3a3a3e;
+  }
+
+  .claymorphism-btn {
+    background: linear-gradient(145deg, #fafaf9, #e0ded7);
+    box-shadow:
+      6px 6px 12px #d5d4d0,
+      -6px -6px 12px #ffffff;
+    border-radius: 16px;
+    transition: all 0.3s ease;
+  }
+
+  .claymorphism-btn:hover {
+    box-shadow:
+      4px 4px 8px #d5d4d0,
+      -4px -4px 8px #ffffff;
+    transform: translateY(1px);
+  }
+
+  .claymorphism-btn:active {
+    box-shadow:
+      inset 4px 4px 8px #d5d4d0,
+      inset -4px -4px 8px #ffffff;
+    transform: translateY(0);
+  }
+
+  .dark .claymorphism-btn {
+    background: linear-gradient(145deg, #2a2a2e, #1a1a1c);
+    box-shadow:
+      6px 6px 12px #0d0d0e,
+      -6px -6px 12px #3a3a3e;
+  }
+
+  .dark .claymorphism-btn:hover {
+    box-shadow:
+      4px 4px 8px #0d0d0e,
+      -4px -4px 8px #3a3a3e;
+  }
+
+  .dark .claymorphism-btn:active {
+    box-shadow:
+      inset 4px 4px 8px #0d0d0e,
+      inset -4px -4px 8px #3a3a3e;
+  }
+}

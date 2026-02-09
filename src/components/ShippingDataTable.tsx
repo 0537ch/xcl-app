@@ -184,7 +184,7 @@ export default function ShippingDataTable() {
   };
 
   return (
-    <Card>
+    <Card variant="clay">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
@@ -210,6 +210,7 @@ export default function ShippingDataTable() {
               fetchData(result.uploadId?.toString());
             }} />
             <Button
+              className="claymorphism-btn"
               variant="outline"
               size="sm"
               onClick={() => fetchData(selectedUploadId)}
@@ -223,6 +224,7 @@ export default function ShippingDataTable() {
               Refresh
             </Button>
             <Button
+              className="claymorphism-btn"
               variant="outline"
               size="sm"
               onClick={handleExportClick}
@@ -255,25 +257,25 @@ export default function ShippingDataTable() {
           <div className="overflow-x-auto">
             <table className="w-full">
               <thead>
-                <tr className="border-b">
-                  <th className="py-4 px-4 text-center text-sm font-semibold text-foreground border-r-2 border-border">
+                <tr className="border-b border-border bg-primary/5">
+                  <th className="py-4 px-4 text-center text-sm font-semibold text-foreground border-r-2 border-foreground/20">
                     Month
                   </th>
                   {yearGroups.map((group, index) => (
                     <th
                       key={`${group.year}-${group.type}`}
-                      className="py-4 px-4 text-center text-sm font-semibold text-foreground border-l-2 border-border"
+                      className="py-4 px-4 text-center text-sm font-semibold text-foreground border-l-2 border-foreground/20"
                       colSpan={2}
                     >
                       {group.label}
                     </th>
                   ))}
                 </tr>
-                <tr className="border-b bg-muted/50">
+                <tr className="border-b border-foreground/10 bg-primary/10">
                   <th className="py-2 px-4 text-center text-xs font-medium text-muted-foreground"></th>
                   {yearGroups.map((group, index) => (
                     <React.Fragment key={`${group.year}-${group.type}`}>
-                      <th className="py-2 px-4 text-center text-xs font-semibold text-muted-foreground border-l-2 border-border">
+                      <th className="py-2 px-4 text-center text-xs font-semibold text-muted-foreground border-l-2 border-foreground/20">
                         Box
                       </th>
                       <th className="py-2 px-4 text-center text-xs font-semibold text-muted-foreground">
@@ -287,16 +289,14 @@ export default function ShippingDataTable() {
                 {data.map((row, index) => (
                   <tr
                     key={row.month}
-                    className={`border-b border-border/50 ${
-                      index % 2 === 0 ? 'bg-background' : 'bg-muted/20'
-                    }`}
+                    className="border-b border-foreground/10"
                   >
-                    <td className="py-3 px-4 text-sm font-medium border-r-2 border-border">
+                    <td className="py-3 px-4 text-sm font-medium border-r-2 border-foreground/20">
                       {row.month}
                     </td>
                     {yearGroups.map((group, groupIndex) => (
                       <React.Fragment key={`${group.year}-${group.type}`}>
-                        <td className="py-3 px-4 text-sm text-center tabular-nums border-l-2 border-border">
+                        <td className="py-3 px-4 text-sm text-center tabular-nums border-l-2 border-foreground/20">
                           {formatNumber((row[group.boxKey] as number | null) ?? null)}
                         </td>
                         <td className="py-3 px-4 text-sm text-center tabular-nums">

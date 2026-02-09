@@ -105,7 +105,7 @@ export default function ExcelUploadButton({ onUploadSuccess }: ExcelUploadButton
 
   return (
     <>
-      <Button onClick={() => setOpen(true)} size="sm" variant="outline">
+      <Button onClick={() => setOpen(true)} size="sm" variant="outline" className="claymorphism-btn">
         <Upload className="w-4 h-4 mr-2" />
         Upload
       </Button>
@@ -147,7 +147,7 @@ export default function ExcelUploadButton({ onUploadSuccess }: ExcelUploadButton
                     </p>
                   </div>
                   <label className="cursor-pointer">
-                    <Button type="button" size="sm" asChild>
+                    <Button type="button" size="sm" className="claymorphism-btn" asChild>
                       <span>Browse Files</span>
                     </Button>
                     <input

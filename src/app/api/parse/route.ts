@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       success: true,
       data: parsedData.data,
-      total: parsedData.total,
+      periods: parsedData.periods,
       validation: {
         isValid: validation.isValid,
         errors: validation.errors,
