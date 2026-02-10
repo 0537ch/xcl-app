@@ -1,17 +1,24 @@
 import ShippingDataTable from "@/components/ShippingDataTable";
+import { AppSidebar } from "@/components/app-sidebar";
+import { SidebarInset, SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { Separator } from "@/components/ui/separator";
 
 export default function Page() {
   return (
-    <div className="min-h-screen bg-background">
-      <div className="container mx-auto py-8 space-y-8">
-        <div className="text-center space-y-2">
-          <h1 className="text-4xl font-bold tracking-tight">
-            Shipping Data Throughput
-          </h1>
+    <SidebarProvider defaultOpen={true}>
+      <AppSidebar />
+      <SidebarInset>
+        <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
+          <SidebarTrigger className="-ml-1" />
+          <Separator orientation="vertical" className="mr-2 h-4" />
+          <div className="flex-1">
+            <h1 className="text-lg font-semibold">Actual vs Budget Throughput</h1>
+          </div>
+        </header>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <ShippingDataTable />
         </div>
-
-        <ShippingDataTable />
-      </div>
-    </div>
+      </SidebarInset>
+    </SidebarProvider>
   );
 }
