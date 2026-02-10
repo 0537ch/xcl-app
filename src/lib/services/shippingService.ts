@@ -22,9 +22,12 @@ export async function saveShippingData(
   try {
     const db = getDb();
 
+    // Set all existing uploads to inactive
+    await db`UPDATE uploads SET is_active = false`;
+
     const [upload] = await db`
-      INSERT INTO uploads (filename, total_rows, status)
-      VALUES (${filename}, ${parsedData.data.length}, 'in_progress')
+      INSERT INTO uploads (filename, total_rows, status, is_active)
+      VALUES (${filename}, ${parsedData.data.length}, 'in_progress', true)
       RETURNING id
     `;
 
@@ -194,17 +197,45 @@ export async function getUploadHistory(): Promise<any[]> {
 }
 
 /**
+ * Get active upload
+ */
+export async function getActiveUpload(): Promise<any | null> {
+  const sql = getDb();
+
+  const result = await sql`
+    SELECT *
+    FROM uploads
+    WHERE is_active = true
+    LIMIT 1
+  `;
+
+  return result.length > 0 ? result[0] : null;
+}
+
+/**
  * Delete data by upload ID
  */
 export async function deleteByUploadId(uploadId: number): Promise<boolean> {
   const sql = getDb();
 
   try {
-    await sql`DELETE FROM shipping_data WHERE upload_id = ${uploadId}`;
-    await sql`DELETE FROM uploads WHERE id = ${uploadId}`;
+    // First delete related shipping data
+    const shippingDeleteResult = await sql`DELETE FROM shipping_data WHERE upload_id = ${uploadId}`;
+    console.log(`Deleted ${shippingDeleteResult.count} rows from shipping_data`);
+
+    // Then delete the upload record
+    const uploadDeleteResult = await sql`DELETE FROM uploads WHERE id = ${uploadId}`;
+    console.log(`Deleted ${uploadDeleteResult.count} rows from uploads`);
+
+    // Check if anything was actually deleted
+    if (shippingDeleteResult.count === 0 && uploadDeleteResult.count === 0) {
+      console.warn(`No records found for upload_id: ${uploadId}`);
+      return false;
+    }
+
     return true;
   } catch (error) {
     console.error('Error deleting data:', error);
-    return false;
+    throw error; // Re-throw to properly handle in API route
   }
 }

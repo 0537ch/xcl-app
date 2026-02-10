@@ -130,7 +130,7 @@ export default function ExcelUpload({ onUploadSuccess }: ExcelUploadProps) {
               </div>
               <label className="cursor-pointer">
                 <Button type="button" asChild>
-                  <span>Browse Files</span>
+                  <span className='text-black'>Browse Files</span>
                 </Button>
                 <input
                   type="file"

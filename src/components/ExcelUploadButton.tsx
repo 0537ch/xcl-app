@@ -147,7 +147,7 @@ export default function ExcelUploadButton({ onUploadSuccess }: ExcelUploadButton
                     </p>
                   </div>
                   <label className="cursor-pointer">
-                    <Button type="button" size="sm" className="claymorphism-btn" asChild>
+                    <Button type="button" size="sm" className="claymorphism-btn text-foreground" asChild>
                       <span>Browse Files</span>
                     </Button>
                     <input

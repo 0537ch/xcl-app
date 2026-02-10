@@ -6,24 +6,10 @@ import { RefreshCw, Loader2, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
-  AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from '@/components/ui/alert-dialog';
+import {  Select,  SelectContent,  SelectItem,  SelectTrigger,  SelectValue,} from '@/components/ui/select';
+import {  AlertDialog,  AlertDialogAction,  AlertDialogCancel,  AlertDialogContent,  AlertDialogDescription,  AlertDialogFooter,  AlertDialogHeader, AlertDialogTitle,} from '@/components/ui/alert-dialog';
 import ExcelUploadButton from '@/components/ExcelUploadButton';
+import DeleteButton from '@/components/DeleteButton';
 
 interface ShippingData {
   month: string;
@@ -107,10 +93,38 @@ export default function ShippingDataTable() {
 
       if (result.success && result.data.length > 0) {
         setUploads(result.data);
-        setSelectedUploadId(result.data[0].id.toString());
+
+        // Fetch active upload to determine which one to display
+        const activeResponse = await fetch('/api/uploads/active');
+        const activeResult = await activeResponse.json();
+
+        if (activeResult.success && activeResult.data) {
+          setSelectedUploadId(activeResult.data.id.toString());
+        } else {
+          // Fallback to first upload if no active one
+          setSelectedUploadId(result.data[0].id.toString());
+        }
       }
     } catch (err) {
       console.error('Failed to fetch uploads:', err);
+    }
+  }
+
+  const deleteItem = async (id: number) => {
+    try {
+      const response = await fetch(`/api/uploads/${id}`, {
+        method: 'DELETE',
+      });
+      if (response.ok) {
+        await fetchUploads();
+      } else {
+        const errorData = await response.json().catch(() => ({}));
+        console.error('Delete failed:', errorData);
+        alert(errorData.error || 'Failed to delete uploads');
+      }
+    } catch (error) {
+      console.error('Error deleting:', error);
+      alert('Failed to delete');
     }
   };
 
@@ -233,6 +247,13 @@ export default function ShippingDataTable() {
               <Download className="w-4 h-4 mr-2" />
               Export CSV
             </Button>
+            <DeleteButton
+              itemName="upload"
+              disabled={!selectedUploadId}
+              onDelete={async () => {
+                await deleteItem(parseInt(selectedUploadId));
+              }}
+            />
           </div>
         </div>
       </CardHeader>

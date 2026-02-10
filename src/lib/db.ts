@@ -11,7 +11,7 @@ export function getDb() {
     }
 
     sql = postgres(url, {
-      ssl: 'require',
+      ssl: process.env.DATABASE_SSL as any,
       prepare: false,  
     })
   }
