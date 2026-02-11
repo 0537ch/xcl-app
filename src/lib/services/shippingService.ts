@@ -219,23 +219,30 @@ export async function deleteByUploadId(uploadId: number): Promise<boolean> {
   const sql = getDb();
 
   try {
-    // First delete related shipping data
+    const [upload] = await sql`SELECT * FROM uploads WHERE id = ${uploadId}`;
+    const wasActive = upload?.is_active;
+
     const shippingDeleteResult = await sql`DELETE FROM shipping_data WHERE upload_id = ${uploadId}`;
-    console.log(`Deleted ${shippingDeleteResult.count} rows from shipping_data`);
-
-    // Then delete the upload record
     const uploadDeleteResult = await sql`DELETE FROM uploads WHERE id = ${uploadId}`;
-    console.log(`Deleted ${uploadDeleteResult.count} rows from uploads`);
 
-    // Check if anything was actually deleted
     if (shippingDeleteResult.count === 0 && uploadDeleteResult.count === 0) {
-      console.warn(`No records found for upload_id: ${uploadId}`);
       return false;
+    }
+
+    if (wasActive) {
+      const [latestUpload] = await sql`
+        SELECT id FROM uploads
+        ORDER BY upload_date DESC
+        LIMIT 1
+      `;
+      if (latestUpload) {
+        await sql`UPDATE uploads SET is_active = true WHERE id = ${latestUpload.id}`;
+      }
     }
 
     return true;
   } catch (error) {
     console.error('Error deleting data:', error);
-    throw error; // Re-throw to properly handle in API route
+    throw error;
   }
 }

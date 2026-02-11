@@ -205,7 +205,7 @@ export default function ShippingDataTable() {
             <CardTitle>Shipping Data</CardTitle>
             {uploads.length > 0 && (
               <Select value={selectedUploadId} onValueChange={setSelectedUploadId}>
-                <SelectTrigger className="w-[300px]">
+                <SelectTrigger className="w-75">
                   <SelectValue placeholder="Select upload" />
                 </SelectTrigger>
                 <SelectContent>

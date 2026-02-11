@@ -170,7 +170,6 @@ export default function Page() {
       <SidebarInset>
         <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4">
           <SidebarTrigger className="-ml-1" />
-          <Separator orientation="vertical" className="mr-2 h-4" />
           <Breadcrumb>
             <BreadcrumbList>
               <BreadcrumbItem>
@@ -188,7 +187,7 @@ export default function Page() {
                 value={selectedUploadId?.toString()}
                 onValueChange={handleUploadChange}
               >
-                <SelectTrigger className="w-[250px]">
+                <SelectTrigger className="w-62.5">
                   <SelectValue placeholder="Select a file" />
                 </SelectTrigger>
                 <SelectContent>
@@ -221,11 +220,11 @@ export default function Page() {
               </div>
               <div className="p-6 bg-card rounded-xl border shadow-sm">
                 <Skeleton className="h-7 w-48 mb-4" />
-                <Skeleton className="h-[300px] w-full" />
+                <Skeleton className="h-75 w-full" />
               </div>
               <div className="p-6 bg-card rounded-xl border shadow-sm">
                 <Skeleton className="h-7 w-48 mb-4" />
-                <Skeleton className="h-[300px] w-full" />
+                <Skeleton className="h-75 w-full" />
               </div>
             </>
           ) : error ? (
@@ -254,13 +253,13 @@ export default function Page() {
               </div>
               <div className="p-6 bg-card rounded-xl border shadow-sm">
                 <h3 className="text-lg font-semibold mb-4">Monthly Box Comparison</h3>
-                <div className="h-[300px]">
+                <div className="h-75">
                   <ShippingCharts data={data} yearGroups={yearGroups} type="bar" />
                 </div>
               </div>
               <div className="p-6 bg-card rounded-xl border shadow-sm">
-                <h3 className="text-lg font-semibold mb-4">TEUS Trend Over Time</h3>
-                <div className="h-[300px]">
+                <h3 className="text-lg font-semibold mb-4">TEUs Trend Over Time</h3>
+                <div className="h-75">
                   <ShippingCharts data={data} yearGroups={yearGroups} type="line" />
                 </div>
               </div>

@@ -19,7 +19,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
             <Package2 className="h-4 w-4" />
           </div>
           <div className="grid flex-1 text-sm font-medium leading-tight">
-            <span className="truncate font-semibold">Shipping Co</span>
+            <span className="truncate font-semibold">Petikemas</span>
             <span className="truncate text-xs text-muted-foreground">Dashboard</span>
           </div>
         </div>
@@ -45,13 +45,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               title: "Upload Data",
               url: "/",
               icon: <Upload />,
-              isActive: false,
-              items: [],
-            },
-            {
-              title: "Settings",
-              url: "/settings",
-              icon: <Settings />,
               isActive: false,
               items: [],
             },
