@@ -16,11 +16,6 @@ interface ShippingData {
   [key: string]: number | null | string;
 }
 
-interface ApiResponse {
-  success: boolean;
-  data: ShippingData[];
-}
-
 interface Upload {
   id: number;
   filename: string;

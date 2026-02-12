@@ -5,15 +5,7 @@ import { Upload, FileSpreadsheet, Loader2, CheckCircle, AlertCircle } from 'luci
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-
-interface UploadResult {
-  success: boolean;
-  message: string;
-  recordCount?: number;
-  uploadId?: number;
-  total?: any;
-  error?: string;
-}
+import type { UploadResult } from '@/types/api';
 
 interface ExcelUploadProps {
   onUploadSuccess?: (result: UploadResult) => void;

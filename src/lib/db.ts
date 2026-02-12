@@ -12,7 +12,10 @@ export function getDb() {
 
     sql = postgres(url, {
       ssl: process.env.DATABASE_SSL as any,
-      prepare: false,  
+      prepare: false,
+      connect_timeout: 10,
+      idle_timeout: 20,
+      max: 10,
     })
   }
 

@@ -1,15 +1,5 @@
 import { getDb } from '@/lib/db';
-import { ShippingDataRow, ParsedExcelData } from '@/lib/utils/excelParser';
-import type { Sql } from 'postgres';
-
-export interface ShippingRecord {
-  id?: number;
-  month: string;
-  period: string;
-  box: number | null;
-  teus: number | null;
-  upload_id?: number;
-}
+import type { ShippingRecord, ParsedExcelData } from '@/types/shipping';
 
 /**
  * Save parsed Excel data to database
@@ -141,12 +131,12 @@ export async function getFormattedShippingData(uploadId?: number): Promise<any[]
     return [];
   }
 
-  const boxCases = periods.map(p => {
+  const boxCases = periods.map((p) => {
     const safeName = p.period.replace(/[^a-zA-Z0-9_]/g, '_');
     return `MAX(CASE WHEN period = '${p.period.replace(/'/g, "''")}' THEN box END) as "${safeName}_box"`;
   });
 
-  const teusCases = periods.map(p => {
+  const teusCases = periods.map((p) => {
     const safeName = p.period.replace(/[^a-zA-Z0-9_]/g, '_');
     return `MAX(CASE WHEN period = '${p.period.replace(/'/g, "''")}' THEN teus END) as "${safeName}_teus"`;
   });

@@ -1,11 +1,7 @@
 "use client"
 
 import { BarChart, Bar, LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from "recharts"
-
-interface ShippingData {
-  month: string
-  [key: string]: number | null | string
-}
+import type { ShippingData } from "@/types/shipping"
 
 interface ShippingChartsProps {
   data: ShippingData[]

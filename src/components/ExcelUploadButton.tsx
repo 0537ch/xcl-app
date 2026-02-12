@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback } from 'react';
-import { Upload, FileSpreadsheet, Loader2, CheckCircle, AlertCircle, X } from 'lucide-react';
+import { Upload, FileSpreadsheet, Loader2, CheckCircle, AlertCircle, } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import {
   Dialog,
@@ -11,15 +11,7 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 import { Badge } from '@/components/ui/badge';
-
-interface UploadResult {
-  success: boolean;
-  message: string;
-  recordCount?: number;
-  uploadId?: number;
-  total?: any;
-  error?: string;
-}
+import type { UploadResult } from '@/types/api';
 
 interface ExcelUploadButtonProps {
   onUploadSuccess?: (result: UploadResult) => void;
@@ -111,7 +103,7 @@ export default function ExcelUploadButton({ onUploadSuccess }: ExcelUploadButton
       </Button>
 
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogContent className="sm:max-w-[500px]">
+        <DialogContent className="sm:max-w-125">
           <DialogHeader>
             <DialogTitle>Import Excel File</DialogTitle>
             <DialogDescription>
@@ -175,9 +167,9 @@ export default function ExcelUploadButton({ onUploadSuccess }: ExcelUploadButton
                 }`}
               >
                 {uploadResult.success ? (
-                  <CheckCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                  <CheckCircle className="w-4 h-4 shrink-0 mt-0.5" />
                 ) : (
-                  <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />
+                  <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
                 )}
                 <div className="flex-1 space-y-1">
                   <p className="text-sm font-medium">{uploadResult.message}</p>

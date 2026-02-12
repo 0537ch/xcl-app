@@ -1,29 +1,5 @@
 import * as XLSX from 'xlsx';
-
-export interface ShippingDataRow {
-  month: string;
-  year1: {
-    box: number | null;
-    teus: number | null;
-  };
-  year2Budget: {
-    box: number | null;
-    teus: number | null;
-  };
-  year2Actual: {
-    box: number | null;
-    teus: number | null;
-  };
-}
-
-export interface ParsedExcelData {
-  data: ShippingDataRow[];
-  periods: {
-    year1Label: string;
-    year2BudgetLabel: string;
-    year2ActualLabel: string;
-  };
-}
+import type { ShippingDataRow, ParsedExcelData } from '@/types/shipping';
 
 /**
  * Parse Excel file from fixed range C29:H40
